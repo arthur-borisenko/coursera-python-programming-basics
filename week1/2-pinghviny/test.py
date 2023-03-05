@@ -27,7 +27,3 @@ class Test(unittest.TestCase):
   ^^ ^^   \
 \n"""
         self.assertEqual(expected_result, value)
-
-
-if __name__ == '__main__':
-    unittest.main()

@@ -10,7 +10,3 @@ class Test(unittest.TestCase):
         value = mockAndRun(['3', '14'], main)
         expected_result = "2\n"
         self.assertEqual(expected_result, value)
-
-
-if __name__ == '__main__':
-    unittest.main()

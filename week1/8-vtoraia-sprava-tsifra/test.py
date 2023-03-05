@@ -11,6 +11,3 @@ class Test(unittest.TestCase):
         expected_result = "7\n"
         self.assertEqual(expected_result, value)
 
-
-if __name__ == '__main__':
-    unittest.main()
