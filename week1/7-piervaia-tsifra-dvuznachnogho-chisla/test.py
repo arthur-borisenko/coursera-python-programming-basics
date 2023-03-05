@@ -1,22 +1,12 @@
-import sys
 import unittest
-from io import StringIO
-from unittest import mock
 
+import utils.testUtil
 from task import main
 
 
 class Test(unittest.TestCase):
-
-    @mock.patch('builtins.input', side_effect=['42'])
-    def test_when42_then4(self, params):
-        old_stdout = sys.stdout
-        sys.stdout = capturedStdOut = StringIO()
-        main()
-        sys.stdout = old_stdout
-        value = capturedStdOut.getvalue()
-        print("Output")
-        print(value)
+    def test_when42_then4(self):
+        value = utils.tester.mockAndRun(['42'], main)
         expected_result = "4\n"
         self.assertEqual(expected_result, value)
 

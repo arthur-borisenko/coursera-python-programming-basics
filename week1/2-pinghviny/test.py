@@ -1,22 +1,13 @@
-import sys
 import unittest
-from io import StringIO
-from unittest import mock
 
 from task import main
+from utils.testUtil import mockAndRun
 
 
 class Test(unittest.TestCase):
 
-    @mock.patch('builtins.input', side_effect=['3'])
-    def test_when3_then3(self, params):
-        old_stdout = sys.stdout
-        sys.stdout = capturedStdOut = StringIO()
-        main()
-        sys.stdout = old_stdout
-        value = capturedStdOut.getvalue()
-        print("Output")
-        print(value)
+    def test_when3_then3(self):
+        value = mockAndRun(['3'], main)
         expected_result = """\
    _~_       _~_       _~_    
   (o o)     (o o)     (o o)   
@@ -26,15 +17,8 @@ class Test(unittest.TestCase):
 \n"""
         self.assertEqual(expected_result, value)
 
-    @mock.patch('builtins.input', side_effect=['1'])
-    def test_when1_then1(self, params):
-        old_stdout = sys.stdout
-        sys.stdout = capturedStdOut = StringIO()
-        main()
-        sys.stdout = old_stdout
-        value = capturedStdOut.getvalue()
-        print("Output")
-        print(value)
+    def test_when1_then1(self):
+        value = mockAndRun(['1'], main)
         expected_result = """\
    _~_    
   (o o)   

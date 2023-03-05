@@ -1,22 +1,13 @@
-import sys
 import unittest
-from io import StringIO
-from unittest import mock
 
 from task import main
+from utils.testUtil import mockAndRun
 
 
 class Test(unittest.TestCase):
 
-    @mock.patch('builtins.input', side_effect=['179'])
-    def test_when179_then9(self, params):
-        old_stdout = sys.stdout
-        sys.stdout = capturedStdOut = StringIO()
-        main()
-        sys.stdout = old_stdout
-        value = capturedStdOut.getvalue()
-        print("Output")
-        print(value)
+    def test_when179_then9(self):
+        value = mockAndRun(['179'], main)
         expected_result = "9\n"
         self.assertEqual(expected_result, value)
 
