@@ -15,10 +15,10 @@ def korov(number: int) -> str:
             return "korov"
 
 
-def run():
+def main():
     n = int(input())
-    print(n, korov(n), end='')
+    print(n, korov(n))
 
 
 if __name__ == '__main__':
-    run()
+    main()
