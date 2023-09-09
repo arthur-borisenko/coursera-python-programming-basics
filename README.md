@@ -3,3 +3,6 @@ Coding tasks for python course https://www.coursera.org/learn/python-osnovy-prog
 
 # Prerequisites:
 * python 3.11
+
+# Build
+* `pip install -r requirements.txt`
