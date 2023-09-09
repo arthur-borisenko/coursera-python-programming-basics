@@ -1,12 +1,12 @@
 def main():
-    Start = int(input())
-    Need = int(input())
-    currentDay = 0
-    currentDistance = Start
-    while currentDistance < Need:
+    FirstDayDistance = int(input())
+    TargetDistance = int(input())
+    currentDay = 1
+    currentDistance = FirstDayDistance
+    while currentDistance < TargetDistance:
         currentDay += 1
         currentDistance *= 1.1
-    print(currentDay + 1)
+    print(currentDay)
 
 
 if __name__ == '__main__':
