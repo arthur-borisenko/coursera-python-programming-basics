@@ -1,19 +1,29 @@
+
 def main():
-    inputList = deserialize()
-    maxNumber = 0
-    for number in inputList:
-        if number > maxNumber:
-            maxNumber = number
-    print(maxNumber)
+    max_number = find_max(InputIntStream())
+    print(max_number)
 
 
-def deserialize() -> list:
-    inputList = []
-    recentInput = int(input())
-    while recentInput != 0:
-        inputList.append(recentInput)
-        recentInput = int(input())
-    return inputList
+def find_max(iterator):
+    max_number = None
+    for number in iterator:
+        if (max_number is None) or number > max_number:
+            max_number = number
+    return max_number
+
+
+class InputIntStream():
+    def __init__(self):
+        pass
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        self.current = int(input())
+        if self.current != 0:
+            return self.current
+        raise StopIteration
 
 
 if __name__ == '__main__':
