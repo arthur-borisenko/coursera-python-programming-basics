@@ -1,9 +1,7 @@
 def main():
     result = 0
-    currentNumber = int(input())
-    while currentNumber != 0:
+    while int(input()) != 0:
         result += 1
-        currentNumber = int(input())
     print(result)
 
 
