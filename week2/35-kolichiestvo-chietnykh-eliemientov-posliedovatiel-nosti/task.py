@@ -1,9 +1,9 @@
 def main():
-    summa = find_chiethnyh_number(InputIntStream())
-    print(summa)
+    count = find_even_numbers_count(InputIntStream())
+    print(count)
 
 
-def find_chiethnyh_number(iterator):
+def find_even_numbers_count(iterator):
     result = 0
     for number in iterator:
         if number % 2 == 0:
