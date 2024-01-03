@@ -1,9 +1,9 @@
 def main():
-    count = find_even_numbers_count(InputIntStream())
+    count = count_even_numbers(InputIntStream())
     print(count)
 
 
-def find_even_numbers_count(iterator):
+def count_even_numbers(iterator):
     result = 0
     for number in iterator:
         if number % 2 == 0:
