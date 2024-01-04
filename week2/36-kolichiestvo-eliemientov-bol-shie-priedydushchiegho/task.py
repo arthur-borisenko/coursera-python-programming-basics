@@ -17,7 +17,7 @@ def main():
     res = 0
     prevNumber = next(iterator)
     for number in iterator:
-        if number > prevNumber and number != 0:
+        if number > prevNumber:
             res += 1
         prevNumber = number
     print(res)
