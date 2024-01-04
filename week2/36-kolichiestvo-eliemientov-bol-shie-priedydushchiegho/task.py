@@ -1,17 +1,10 @@
-def getSequence() -> list:
-    res = []
-    i = int(input())
-    while i != 0:
-        res.append(i)
-        i = int(input())
-    return res
-
-
 def main():
-    seq = getSequence()
     res = 0
-    for i in range(1, len(seq)):
-        if seq[i] > seq[i - 1]:
+    number = int(input())
+    while number != 0:
+        prevNumber = number
+        number = int(input())
+        if number > prevNumber and number != 0:
             res += 1
     print(res)
 
