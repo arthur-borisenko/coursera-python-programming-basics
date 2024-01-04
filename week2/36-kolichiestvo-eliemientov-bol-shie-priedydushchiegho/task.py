@@ -15,14 +15,11 @@ class InputIntStream:
 def main():
     iterator = InputIntStream()
     res = 0
-    prevNumber = None
+    prevNumber = next(iterator)
     for number in iterator:
-        if prevNumber is None:
-            prevNumber = number
-        else:
-            if number > prevNumber and number != 0:
-                res += 1
-            prevNumber = number
+        if number > prevNumber and number != 0:
+            res += 1
+        prevNumber = number
     print(res)
 
 
