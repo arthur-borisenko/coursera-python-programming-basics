@@ -11,7 +11,7 @@ def get_top_2_element(seq):
         if max_el is None or max_el <= el:
             top_2_el = max_el
             max_el = el
-        elif top_2_el is None or el >= top_2_el:
+        elif top_2_el is None or top_2_el <= el:
             top_2_el = el
     return top_2_el
 
