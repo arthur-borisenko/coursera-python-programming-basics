@@ -1,18 +1,18 @@
-def count_maximum_elements(seq):
-    res = 0
+def count_max_elements(seq):
+    max_numbers_count = 0
     max_el = None
     for el in seq:
         if max_el is None or max_el < el:
-            res = 0
+            max_numbers_count = 0
             max_el = el
         if el == max_el:
-            res += 1
-    return res
+            max_numbers_count += 1
+    return max_numbers_count
 
 
 def main():
     seq = InputIntStream()
-    print(count_maximum_elements(seq))
+    print(count_max_elements(seq))
 
 
 class InputIntStream:
