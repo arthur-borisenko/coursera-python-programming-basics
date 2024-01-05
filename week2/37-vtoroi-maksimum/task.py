@@ -4,6 +4,14 @@ def main():
     print(res)
 
 
+def get_max(iterable):
+    max_el = None
+    for el in iterable:
+        if max_el is None or max_el < el:
+            max_el = el
+    return max_el
+
+
 def get_top_2_element(seq):
     seq.remove(max(seq))
     return max(seq)
