@@ -1,13 +1,13 @@
 def count_max_elements(seq):
-    max_numbers_count = 0
+    max_count = 0
     max_el = None
     for el in seq:
         if max_el is None or max_el < el:
-            max_numbers_count = 0
+            max_count = 0
             max_el = el
         if el == max_el:
-            max_numbers_count += 1
-    return max_numbers_count
+            max_count += 1
+    return max_count
 
 
 def main():
