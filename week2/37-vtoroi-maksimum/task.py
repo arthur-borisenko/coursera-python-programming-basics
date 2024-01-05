@@ -1,29 +1,33 @@
 def main():
-    seq = get_seq()
+    seq = InputIntStream()
     res = get_top_2_element(seq)
     print(res)
 
 
-def get_max(iterable):
-    max_el = None
-    for el in iterable:
-        if max_el is None or max_el < el:
-            max_el = el
-    return max_el
-
-
 def get_top_2_element(seq):
-    seq.remove(max(seq))
-    return max(seq)
+    top_2_el = None
+    max_el = None
+    for el in seq:
+        if max_el is None or max_el <= el:
+            top_2_el = max_el
+            max_el = el
+        elif top_2_el is None or el >= top_2_el:
+            top_2_el = el
+    return top_2_el
 
 
-def get_seq():
-    result = []
-    n = int(input())
-    while n != 0:
-        result.append(n)
-        n = int(input())
-    return result
+class InputIntStream:
+    def __init__(self):
+        pass
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        self.current = int(input())
+        if self.current != 0:
+            return self.current
+        raise StopIteration
 
 
 if __name__ == '__main__':
