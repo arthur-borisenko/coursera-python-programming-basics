@@ -1,13 +1,12 @@
 def main():
     required_Fn = int(input())
-    Fn = get_fibonacci_number_number(required_Fn)
-    print(Fn)
+    n = get_n_by_fibonacci_number(required_Fn)
+    print(n)
 
 
-def get_fibonacci_number_number(required_Fn):
+def get_n_by_fibonacci_number(required_Fn):
     Fn2 = 1
     Fn1 = 0
-    Fn = 0
     n = 0
     while True:
         n += 1
