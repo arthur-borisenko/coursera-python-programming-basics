@@ -1,4 +1,4 @@
-def checkPalindrome(string: str) -> int:
+def checkPalindrome(string: str) -> bool:
     length = len(string)
     result = True
     for i in range(int((length - length % 2) / 2)):
@@ -8,9 +8,9 @@ def checkPalindrome(string: str) -> int:
 
 
 def main():
-    num = int(input())
+    K = int(input())
     res = 0
-    for i in range(1, num + 1):
+    for i in range(1, K + 1):
         if checkPalindrome(str(i)):
             res += 1
     print(res)
