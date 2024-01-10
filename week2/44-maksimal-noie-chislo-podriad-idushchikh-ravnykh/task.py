@@ -1,8 +1,14 @@
 def main():
+    res = count_max_equal_number()
+    print(res + 1)
+
+
+def count_max_equal_number():
     res = 0
     currentRes = 0
-    prevN = InputIntStream().__next__()
-    for n in InputIntStream():
+    iterator = InputIntStream()
+    prevN = iterator.__next__()
+    for n in iterator:
         if prevN == n:
             currentRes += 1
         else:
@@ -10,7 +16,7 @@ def main():
         if currentRes > res:
             res = currentRes
         prevN = n
-    print(res + 1)
+    return res
 
 
 class InputIntStream:
