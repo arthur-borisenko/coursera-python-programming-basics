@@ -1,37 +1,50 @@
 def main():
-    res = count_max_()
+    res = count_max()
     print(res)
 
 
-class pairTypes():
+class PairTypes:
     GROWING = 1
-    DESCING = 2
+    DESC = 2
+    EQ = 3
 
 
-def count_max_():
-    res = 1
-    currentRes = 2
-    prevPairType = None
+def count_max():
     iterator = InputIntStream()
-    prevN = iterator.__next__()
+    max_pairs = 0
+    pairs = 0
+    prev_pair_type = None
+    prev_n = iterator.__next__()
     for n in iterator:
-        if n > prevN:
-            currentPairType = pairTypes.GROWING
-        elif n < prevN:
-            currentPairType = pairTypes.DESCING
+        pair_type = get_pair_type(n, prev_n)
+        if pair_type == PairTypes.EQ or pair_type is None:
+            pairs = 0
+        elif prev_pair_type != pair_type:
+            pairs = 1
         else:
-            currentRes = 1
-            prevN = n
-            continue
-        if prevPairType == currentPairType:
-            currentRes += 1
-        else:
-            currentRes = 2
-        if currentRes > res:
-            res = currentRes
-        prevPairType = currentPairType
-        prevN = n
-    return res
+            pairs += 1
+
+        if pairs > max_pairs:
+            max_pairs = pairs
+
+        prev_pair_type = pair_type
+        prev_n = n
+
+    return count_elements_in_pairs(max_pairs)
+
+
+def count_elements_in_pairs(max_pairs):
+    return max_pairs + 1
+
+
+def get_pair_type(n, prev_n):
+    if n > prev_n:
+        pair_type = PairTypes.GROWING
+    elif n < prev_n:
+        pair_type = PairTypes.DESC
+    else:
+        pair_type = PairTypes.EQ
+    return pair_type
 
 
 class InputIntStream:
