@@ -1,35 +1,36 @@
 def main():
     res = count_max_()
-    print(res + 1)
+    print(res)
+
+
+class pairTypes():
+    GROWING = 1
+    DESCING = 2
 
 
 def count_max_():
-    res = 0
-    currentRes = 0
-    # 0 - больше предыдущего, 1 - меньше
-    currentFragmentType = None
-    prevFragmentType = None
+    res = 1
+    currentRes = 2
+    prevPairType = None
     iterator = InputIntStream()
     prevN = iterator.__next__()
     for n in iterator:
-        if prevN < n:
-            currentFragmentType = 0
-        elif prevN > n:
-            currentFragmentType = 1
+        if n > prevN:
+            currentPairType = pairTypes.GROWING
+        elif n < prevN:
+            currentPairType = pairTypes.DESCING
         else:
-            currentFragmentType = None
-        prevN = n
-        if (prevFragmentType == currentFragmentType and
-                currentFragmentType is not None):
+            currentRes = 1
+            prevN = n
+            continue
+        if prevPairType == currentPairType:
             currentRes += 1
         else:
-            if currentFragmentType is not None:
-                currentRes = 1
-            else:
-                currentRes = 0
+            currentRes = 2
         if currentRes > res:
             res = currentRes
-        prevFragmentType = currentFragmentType
+        prevPairType = currentPairType
+        prevN = n
     return res
 
 
