@@ -1,7 +1,3 @@
-def check_is_local_maximum(prev_n, n, post_n):
-    return n > prev_n and n > post_n
-
-
 class InputIntStream:
     def __init__(self):
         pass
@@ -16,33 +12,48 @@ class InputIntStream:
         raise StopIteration
 
 
-def get_local_maximums_minimal_distance(input_int_stream: InputIntStream):
-    result = None
-    i = 2
-    prev_local_maximum_pos = None
+# lmax - here is local maximum
+def get_lmax_min_dist(input_int_stream: InputIntStream):
+    min_lmax_dist = None
+    prev_lmax_pos = None
     try:
         prev_prev_n = input_int_stream.__next__()
         prev_n = input_int_stream.__next__()
     except StopIteration:
         return 0
     else:
-        for n in input_int_stream:
-            if check_is_local_maximum(prev_prev_n, prev_n, n):
-                if prev_local_maximum_pos is not None:
-                    if (result is None or i -
-                            prev_local_maximum_pos - 1 <= result):
-                        result = i - prev_local_maximum_pos - 1
-                prev_local_maximum_pos = i - 1
+        for (i, n) in enumerate(input_int_stream):
+            if check_is_lmax(prev_prev_n, prev_n, n):
+                lmax_pos = i - 1
+                lmax_dist = get_lmax_dist(prev_lmax_pos, lmax_pos)
+                min_lmax_dist = safe_min(lmax_dist, min_lmax_dist)
+                prev_lmax_pos = lmax_pos
             prev_prev_n = prev_n
             prev_n = n
-            i += 1
-        if result is None:
+        if min_lmax_dist is None:
             return 0
-        return result
+        return min_lmax_dist
+
+
+def get_lmax_dist(prev_lmax_pos, lmax_pos):
+    lmax_dist = None
+    if prev_lmax_pos is not None:
+        lmax_dist = lmax_pos - prev_lmax_pos
+    return lmax_dist
+
+
+def check_is_lmax(prev_n, n, post_n):
+    return n > prev_n and n > post_n
+
+
+def safe_min(x, y):
+    if y is None or x <= y:
+        y = x
+    return y
 
 
 def main():
-    print(get_local_maximums_minimal_distance(InputIntStream()))
+    print(get_lmax_min_dist(InputIntStream()))
 
 
 if __name__ == '__main__':
