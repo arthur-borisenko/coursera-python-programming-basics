@@ -1,14 +1,18 @@
 import math
 
 
-def get_list_average(seq: list) -> float:
-    elements_sum = 0
-    elements_count = 0
-    for el in seq:
-        elements_count += 1
-        elements_sum += el
-    res = elements_sum / elements_count
-    return res
+class InputIntStream:
+    def __init__(self):
+        pass
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        self.current = int(input())
+        if self.current != 0:
+            return self.current
+        raise StopIteration
 
 
 def get_sequence() -> list:
@@ -22,12 +26,19 @@ def get_sequence() -> list:
 
 
 def main():
-    deviations_squares_sum = 0
-    seq = get_sequence()
-    avg = get_list_average(seq)
-    for el in seq:
-        deviations_squares_sum += (el - avg) ** 2
-    result = math.sqrt(deviations_squares_sum / (len(seq) - 1))
+    input_stream = InputIntStream()
+    elements_sum = 0
+    elements_count = 0
+    elements_squares_sum = 0
+    for el in input_stream:
+        elements_count += 1
+        elements_sum += el
+        elements_squares_sum += el ** 2
+    average = elements_sum / elements_count
+    result = math.sqrt((elements_squares_sum -
+                        2 * average * elements_sum +
+                        elements_count * average ** 2) /
+                       (elements_count - 1))
     print(result)
 
 
