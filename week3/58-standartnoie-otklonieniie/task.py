@@ -15,16 +15,6 @@ class InputIntStream:
         raise StopIteration
 
 
-def get_sequence() -> list:
-    seq = []
-    while True:
-        n = int(input())
-        if n == 0:
-            break
-        seq.append(n)
-    return seq
-
-
 def main():
     input_stream = InputIntStream()
     elements_sum = 0
