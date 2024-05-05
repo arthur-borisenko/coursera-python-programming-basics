@@ -1,11 +1,14 @@
+def safe_to_int(n):
+    if hasattr(n, "is_integer") and n.is_integer():
+        return int(n)
+    else:
+        return n
+
+
 def main():
     n, x = int(input()), float(input())
-    res = calc_gornier_scheme(n, x,
-                              SimpleInputFloatStream(n + 1))
-    if res.is_integer():
-        print(int(res))
-    else:
-        print(res)
+    res = calc_gornier_scheme(x, SimpleInputFloatStream(n + 1))
+    print(safe_to_int(res))
 
 
 class SimpleInputFloatStream:
@@ -29,9 +32,9 @@ class SimpleInputFloatStream:
         raise StopIteration
 
 
-def calc_gornier_scheme(n, x, stream):
+def calc_gornier_scheme(x, stream):
     prev_part = 0
-    for i in range(n):
+    for i in range(len(stream) - 1):
         a = stream.__next__()
         prev_part = (prev_part + a) * x
     prev_part += stream.__next__()
