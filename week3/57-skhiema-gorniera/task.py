@@ -7,38 +7,33 @@ def safe_to_int(n):
 
 def main():
     n, x = int(input()), float(input())
-    res = calc_gornier_scheme(x, SimpleInputFloatStream(n + 1))
+    res = calc_gornier_scheme(x, BoundedFloatInputStream(n + 1))
     print(safe_to_int(res))
 
 
-class SimpleInputFloatStream:
-    i = 0
-    count = 1
-
-    def __len__(self):
-        return self.count
-
-    def __init__(self, count: int):
-        self.count = count
+class BoundedFloatInputStream:
+    size = 0
+    max_size = 0
 
     def __iter__(self):
         return self
 
+    def __init__(self, max_size: int):
+        self.max_size = max_size
+
     def __next__(self):
-        self.current = float(input())
-        if self.i < self.count:
-            self.i += 1
+        if self.size < self.max_size:
+            self.current = float(input())
+            self.size += 1
             return self.current
         raise StopIteration
 
 
 def calc_gornier_scheme(x, stream):
-    prev_part = 0
-    for i in range(len(stream) - 1):
-        a = stream.__next__()
-        prev_part = (prev_part + a) * x
-    prev_part += stream.__next__()
-    return prev_part
+    a_n = stream.__next__()
+    for a_n_minus_1 in stream:
+        a_n = a_n * x + a_n_minus_1
+    return a_n
 
 
 if __name__ == '__main__':
