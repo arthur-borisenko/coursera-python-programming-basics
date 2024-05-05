@@ -16,7 +16,11 @@ class InputIntStream:
 
 
 def main():
-    input_stream = InputIntStream()
+    result = get_standard_deviation(InputIntStream())
+    print(result)
+
+
+def get_standard_deviation(input_stream):
     elements_sum = 0
     elements_count = 0
     elements_squares_sum = 0
@@ -29,7 +33,7 @@ def main():
                         2 * average * elements_sum +
                         elements_count * average ** 2) /
                        (elements_count - 1))
-    print(result)
+    return result
 
 
 if __name__ == '__main__':
