@@ -3,7 +3,7 @@ from enum import Enum
 
 
 class RootCounts(Enum):
-    infinite = 3
+    Infinite = 3
     Two = 2
     One = 1
     Zero = 0
@@ -19,7 +19,7 @@ def safe_to_int(n):
 def safe_solve_quadratic_equation(a, b, c):
     if a == 0:
         if b == 0 and c == 0:
-            return [RootCounts.infinite]
+            return [RootCounts.Infinite]
         elif b == 0:
             return [RootCounts.Zero]
         else:
