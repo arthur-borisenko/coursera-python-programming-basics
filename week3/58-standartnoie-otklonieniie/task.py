@@ -22,23 +22,23 @@ def main():
 
 def get_standard_deviation(input_stream):
     """
-        from task we need to find the standard deviation by formula:
-        sqrt(((x₁-s)²+(x₂-s)²+…+(xn-s)²)/(n-1))
-        <=>
-        sqrt((x₁²-2*x₁*s+s²...+xn²-2*xn*s+s²)/(n-1))
-        <=>
-        sqrt(((x₁²+...+xn²)-2*(x₁+...+xn)*s+(n*s²))/(n-1))
-        <=>
-        {
-            sqrt(((elements_squares_sum)-2*(elements_sum)*s+(elements_count*s²))/(elements_count-1))
-            elements_squares_sum=x₁²+...+xn²
-            elements_sum=x₁+...+xn
-            elements_count=n
-        }
+    from task we need to find the standard deviation by formula:
+    σ=sqrt(((x₁-s)²+(x₂-s)²+…+(xn-s)²)/(n-1))
+    <=>
+    σ=sqrt((x₁²-2*x₁*s+s²...+xn²-2*xn*s+s²)/(n-1))
+    <=>
+    σ=sqrt(((x₁²+...+xn²)-2*(x₁+...+xn)*s+(n*s²))/(n-1))
+    <=>
+    {
+        σ=sqrt(((elements_squares_sum)-2*(elements_sum)*s+(elements_count*s²))/(elements_count-1))
+        elements_squares_sum=x₁²+...+xn²
+        elements_sum=x₁+...+xn
+        elements_count=n
+    }
 
-        :param input_stream:
-        :return:
-        """
+    :param input_stream - x₁,x₂...xn
+    :return: σ
+    """
     elements_sum = 0
     elements_count = 0
     elements_squares_sum = 0
