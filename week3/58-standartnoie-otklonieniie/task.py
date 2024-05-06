@@ -21,6 +21,13 @@ def main():
 
 
 def get_standard_deviation(input_stream):
+    # formula σ=sqrt(((x₁² + ... + xn²) + (n * s²) - 2 * (x₁ + ...
+    # + xn) * s) / (n-1)), which is used in solution is obtained
+    # from formula σ=sqrt( (x₁² + s² - 2 * x₁ * s+...+xn²+s² - 2 *
+    # xn * s) / (n - 1)), which is obtained from the formula
+    # σ=sqrt(((x₁-s)²+(x₂ -s)²+…+( xn-s)²) / (n-1)) by opening
+    # parentheses before the squares, in all formulas sqrt is
+    # square root, s - arithmetic average
     elements_sum = 0
     elements_count = 0
     elements_squares_sum = 0
