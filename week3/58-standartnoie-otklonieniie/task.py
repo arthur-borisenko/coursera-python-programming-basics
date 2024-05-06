@@ -21,13 +21,24 @@ def main():
 
 
 def get_standard_deviation(input_stream):
-    # formula σ=sqrt(((x₁² + ... + xn²) + (n * s²) - 2 * (x₁ + ...
-    # + xn) * s) / (n-1)), which is used in solution is obtained
-    # from formula σ=sqrt( (x₁² + s² - 2 * x₁ * s+...+xn²+s² - 2 *
-    # xn * s) / (n - 1)), which is obtained from the formula
-    # σ=sqrt(((x₁-s)²+(x₂ -s)²+…+( xn-s)²) / (n-1)) by opening
-    # parentheses before the squares, in all formulas sqrt is
-    # square root, s - arithmetic average
+    """
+        from task we need to find the standard deviation by formula:
+        sqrt(((x₁-s)²+(x₂-s)²+…+(xn-s)²)/(n-1))
+        <=>
+        sqrt((x₁²-2*x₁*s+s²...+xn²-2*xn*s+s²)/(n-1))
+        <=>
+        sqrt(((x₁²+...+xn²)-2*(x₁+...+xn)*s+(n*s²))/(n-1))
+        <=>
+        {
+            sqrt(((elements_squares_sum)-2*(elements_sum)*s+(elements_count*s²))/(elements_count-1))
+            elements_squares_sum=x₁²+...+xn²
+            elements_sum=x₁+...+xn
+            elements_count=n
+        }
+
+        :param input_stream:
+        :return:
+        """
     elements_sum = 0
     elements_count = 0
     elements_squares_sum = 0
