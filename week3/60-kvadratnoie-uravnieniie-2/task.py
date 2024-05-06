@@ -16,14 +16,18 @@ def safe_to_int(n):
         return n
 
 
+def solve_linear_equation(b, c):
+    if b == 0 and c == 0:
+        return [RootCounts.Infinite]
+    elif b == 0:
+        return [RootCounts.Zero]
+    else:
+        return [RootCounts.One, safe_to_int((-c) / b)]
+
+
 def safe_solve_quadratic_equation(a, b, c):
     if a == 0:
-        if b == 0 and c == 0:
-            return [RootCounts.Infinite]
-        elif b == 0:
-            return [RootCounts.Zero]
-        else:
-            return [RootCounts.One, safe_to_int((-c) / b)]
+        return solve_linear_equation(b, c)
     else:
         return solve_quadratic_equation(a, b, c)
 
