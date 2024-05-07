@@ -33,10 +33,10 @@ def solve_linear_equation_system(a_matrix, b_vector):
         a_10, a_11, b_1 = c, d, f
 
     else:
-        a_10, a_11, b_1 = c, d, f
-        a_00, a_01, b_0 = a, b, e
+        a_10, a_11, b_1 = a, b, e
+        a_00, a_01, b_0 = c, d, f
     y = (b_1 - b_0 * a_10 / a_00) / (a_11 - a_10 * a_01 / a_00)
-    x = (e - b * y) / a
+    x = (b_0 - a_01 * y) / a_00
     return x, y
 
 
