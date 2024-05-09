@@ -14,11 +14,11 @@ def mockAndRun(input_lines: list, method):
 
 
 def fileTest(input_file_name, output_file_name, input_text, method):
-    if os.path.exists("input.txt"):
+    if not os.path.exists("input.txt"):
         open(input_file_name, "x").close()
     input_file = open(input_file_name, "w")
     input_file.write(input_text)
-    if os.path.exists("input.txt"):
+    if not os.path.exists("input.txt"):
         open(output_file_name, "x").close()
     method()
     f = open(output_file_name, "r")
