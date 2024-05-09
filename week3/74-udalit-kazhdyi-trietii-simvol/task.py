@@ -1,16 +1,32 @@
+import io
+
+
 def main():
-    input_file = open("input.txt")
-    output_file = open("output.txt", "w")
-    try:
-        s = input_file.read()
+    with open("input.txt") as input_file, open("output.txt",
+                                               "w") as output_file:
+        stream = FileCharStream(input_file)
         res = ""
-        for i in range(len(s)):
+        i = 0
+        for char in stream:
             if i % 3 != 0:
-                res += s[i]
+                res += char
+            i += 1
         output_file.write(res)
-    finally:
-        input_file.close()
-        output_file.close()
+
+
+class FileCharStream:
+    def __init__(self, file):
+        self.f = file
+        pass
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        self.current = self.f.read(1)
+        if self.current != "":
+            return self.current
+        raise StopIteration
 
 
 if __name__ == "__main__":

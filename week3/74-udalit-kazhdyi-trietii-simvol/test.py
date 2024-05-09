@@ -34,8 +34,11 @@ class TestCase(unittest.TestCase):
     def test_case3(self):
         result = file_test("qwer", task.main)
         self.assertEqual(result, "we")
+
     def test_pep8(self):
-        os.system("python -m pycodestyle --first task.py")
+        self.assertEqual(
+            os.system("python -m pycodestyle --first task.py"), 0)
+
 
 if __name__ == '__main__':
     unittest.main()
