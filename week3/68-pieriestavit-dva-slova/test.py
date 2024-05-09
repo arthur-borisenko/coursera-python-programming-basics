@@ -6,18 +6,18 @@ from utils.testUtil import mockAndRun
 
 class Test(unittest.TestCase):
     def test_case1(self):
-        value = mockAndRun('''comfort'''.splitlines(), main)
-        expected_result = """-1\n"""
+        value = mockAndRun('''Hello, world!'''.splitlines(), main)
+        expected_result = """world! Hello,\n"""
         self.assertEqual(expected_result, value)
 
     def test_case2(self):
-        value = mockAndRun('''coffee'''.splitlines(), main)
-        expected_result = """3\n"""
+        value = mockAndRun('''A B'''.splitlines(), main)
+        expected_result = """B A\n"""
         self.assertEqual(expected_result, value)
 
     def test_case3(self):
-        value = mockAndRun('''qwerty'''.splitlines(), main)
-        expected_result = """-2\n"""
+        value = mockAndRun('''Q WERTYUIOP'''.splitlines(), main)
+        expected_result = """WERTYUIOP Q\n"""
         self.assertEqual(expected_result, value)
 
     def test_pep8(self):
