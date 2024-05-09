@@ -1,9 +1,8 @@
-REMOVE_PATTERN = "@"
 
 
 def main():
     s = input()
-    print(s.replace(REMOVE_PATTERN, ""))
+    print(s.replace("@", ""))
 
 
 if __name__ == "__main__":
