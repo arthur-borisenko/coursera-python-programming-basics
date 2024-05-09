@@ -1,4 +1,4 @@
-import sys
+import sys,os
 from io import StringIO
 from unittest import mock
 
@@ -14,15 +14,13 @@ def mockAndRun(input_lines: list, method):
 
 
 def fileTest(input_file_name, output_file_name, input_text, method):
-    try:
+    if os.path.exists("input.txt"):
         open(input_file_name, "x").close()
-    finally:
-        input_file = open(input_file_name, "w")
-        input_file.write(input_text)
-    method()
-    try:
+    input_file = open(input_file_name, "w")
+    input_file.write(input_text)
+    if os.path.exists("input.txt"):
         open(output_file_name, "x").close()
-    finally:
-        f = open(output_file_name, "r")
-        output = f.read()
-        return output
+    method()
+    f = open(output_file_name, "r")
+    output = f.read()
+    return output
