@@ -19,10 +19,10 @@ def fileTest(input_file_name, output_file_name, input_text, method):
     finally:
         input_file = open(input_file_name, "w")
         input_file.write(input_text)
-    method()
     try:
         open(output_file_name, "x").close()
     finally:
+        method()
         f = open(output_file_name, "r")
         output = f.read()
         return output
