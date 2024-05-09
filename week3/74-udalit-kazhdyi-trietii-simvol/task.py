@@ -2,16 +2,14 @@ import io
 
 
 def main():
-    with open("input.txt") as input_file, open("output.txt",
-                                               "w") as output_file:
+    with (open("input.txt") as input_file,
+          open("output.txt", "w") as output_file):
         stream = FileCharStream(input_file)
-        res = ""
         i = 0
         for char in stream:
             if i % 3 != 0:
-                res += char
+                output_file.write(char)
             i += 1
-        output_file.write(res)
 
 
 class FileCharStream:
