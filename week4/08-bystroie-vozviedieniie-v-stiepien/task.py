@@ -1,5 +1,5 @@
 def main():
-    base, exponent = int(input()), int(input())
+    base, exponent = float(input()), int(input())
     print(power(base, exponent))
 
 
