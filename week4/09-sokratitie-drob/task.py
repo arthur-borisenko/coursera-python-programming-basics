@@ -11,13 +11,15 @@ def ReduceFraction(numerator, denominator):
     GCD = getGCD(numerator, denominator)
     numerator = numerator / GCD
     denominator = denominator / GCD
-    return safe_to_int(numerator), safe_to_int(denominator)
+    return int(numerator), int(denominator)
 
 
 def getGCD(num1, num2):
     if num1 < num2:
         num1, num2 = num2, num1
-    maxGCD = int(min(num2, sqrt(num1)))
+    if num1 % num2 == 0:
+        return num2
+    maxGCD = num2
     for div in range(maxGCD, 0, -1):
         if num1 % div == 0 and num2 % div == 0:
             return div
