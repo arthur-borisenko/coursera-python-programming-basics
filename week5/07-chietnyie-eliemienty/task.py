@@ -2,9 +2,9 @@ def main():
     input_list = input().split(" ")
     res = []
     for el in input_list:
-        el = int(el)
-        if el % 2 == 0:
-            res.append(el)
+        el_integer = int(el)
+        if el_integer % 2 == 0:
+            res.append(el_integer)
     print(*res)
 
 
