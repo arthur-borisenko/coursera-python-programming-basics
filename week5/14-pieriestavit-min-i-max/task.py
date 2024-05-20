@@ -9,14 +9,15 @@ def main():
 
 def get_min_and_max_indexes(num_list) -> (
         int, int):
-    min_el, max_el, min_el_index, max_el_index = num_list[0], \
-        num_list[0], 0, 0
+    min_el_index, max_el_index = None, None
+    min_el, max_el = None, None
     for i in range(len(num_list)):
-        if num_list[i] < min_el:
-            min_el = num_list[i]
+        current_num = int(num_list[i])
+        if min_el is None or current_num <= min_el:
+            min_el = current_num
             min_el_index = i
-        if num_list[i] > max_el:
-            max_el = num_list[i]
+        if max_el is None or current_num >= max_el:
+            max_el = current_num
             max_el_index = i
     return min_el_index, max_el_index
 
