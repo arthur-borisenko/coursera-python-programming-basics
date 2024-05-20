@@ -1,0 +1,39 @@
+Тест 1
+Входные данные:
+3
+Ivanov 15
+Petrov 10
+Sidorov 20
+
+Вывод программы:
+Sidorov
+Ivanov
+Petrov
+
+
+
+Тест 2
+Входные данные:
+3
+Ivanov 15
+Petrov 20
+Sidorov 10
+
+Вывод программы:
+Petrov
+Ivanov
+Sidorov
+
+
+
+Тест 3
+Входные данные:
+3
+Ivanov 10
+Petrov 15
+Sidorov 20
+
+Вывод программы:
+Sidorov
+Petrov
+Ivanov
