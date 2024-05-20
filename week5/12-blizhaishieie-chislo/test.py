@@ -19,6 +19,14 @@ class Test(unittest.TestCase):
         expected_result = """3
 """
         self.assertEqual(expected_result, value)
+
+    def test_case3(self):
+        value = mockAndRun("""1
+123
+987654321""".splitlines(), main)
+        expected_result = """123
+"""
+        self.assertEqual(expected_result, value)
     def test_pep8(self):
         value = system("python -m pycodestyle --first task.py")
         print(value)
