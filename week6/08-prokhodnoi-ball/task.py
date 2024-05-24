@@ -1,9 +1,9 @@
 class Student:
-    name = ""
-    first = 0
-    second = 0
-    third = 0
-    sum = 0
+    fullName = ""
+    firstScore = 0
+    secondScore = 0
+    thirdScore = 0
+    total = 0
 
 
 def main():
@@ -11,43 +11,64 @@ def main():
             "output.txt", "w", encoding="utf-8") as output_file:
         k = int(input_file.readline())
         input_lines = input_file.readlines()
-        print(get_min_score(input_lines, k), file=output_file)
-
-
-def count_by_key(input_list, pattern, key=lambda x: x):
-    res = 0
-    for el in input_list:
-        if key(el) == pattern:
-            res += 1
-    return res
-
-
-def get_min_score(input_lines, k):
-    students = []
-    for line in input_lines:
-        student = Student()
-        temp_student_data = line.split()
-        student.third, student.second, student.first = \
-            map(int, temp_student_data[-1:-4:-1])
-        student.sum = student.third + student.first + student.second
-        student.name = " ".join(temp_student_data[:-3])
-        if (student.first >= 40 and student.second >= 40 and
-                student.third >= 40):
+        students = []
+        for line in input_lines:
+            student = parse_student(line)
             students.append(student)
-    students.sort(key=lambda student: student.sum, reverse=True)
+
+        print(find_enrollment_score(students, k), file=output_file)
+
+
+def find_enrollment_score(students, k):
+    students = list(
+        filter(lambda el: check_min_requirements(el), students))
+    students.sort(key=lambda el: el.total, reverse=True)
+
     if len(students) <= k:
         return 0
-    if count_by_key(students,
-                    max(students, key=lambda el: el.sum).sum,
-                    lambda x: x.sum) > k:
+
+    max_total = max(students, key=lambda el: el.total).total
+    count_max_total = count(students,
+                            key=lambda el: el.total == max_total)
+    if count_max_total > k:
         return 1
-    else:
-        enrollment_score = students[0].sum
-        fail_score = students[k].sum
-        for i in range(k):
-            if students[i].sum > fail_score:
-                enrollment_score = students[i].sum
-        return enrollment_score
+
+    return find_min_total_greater_then(students, students[k].total)
+
+
+def find_min_total_greater_then(students, fail_total):
+    enrollment_score = None
+    for i in range(len(students)):
+        if (enrollment_score is None or
+                fail_total < students[
+                    i].total < enrollment_score):
+            enrollment_score = students[i].total
+    return enrollment_score
+
+
+def parse_student(line):
+    student = Student()
+    words = line.split()
+    student.thirdScore, student.secondScore, student.firstScore = \
+        int(words[-1]), int(words[-2]), int(words[-3])
+    student.total = (student.thirdScore +
+                     student.firstScore + student.secondScore)
+    student.fullName = " ".join(words[:-4])
+    return student
+
+
+def check_min_requirements(student):
+    return not (student.firstScore < 40 or
+                student.secondScore < 40 or
+                student.thirdScore < 40)
+
+
+def count(input_list, key=lambda x: True):
+    res = 0
+    for el in input_list:
+        if key(el):
+            res += 1
+    return res
 
 
 if __name__ == "__main__":
