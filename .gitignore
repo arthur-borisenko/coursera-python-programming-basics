@@ -130,3 +130,6 @@ dmypy.json
 
 .idea
 *test_builder.py*
+tests.txt
+input.txt
+output.txt
