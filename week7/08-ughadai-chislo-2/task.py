@@ -1,34 +1,21 @@
 def main():
-    max_n = int(input())
-    positive_set = None
-    negative_set = set()
-    question = input()
-    while question != 'HELP':
-        pass
-
-
-def f1(p_set: set, n_set: set, answer: str, max_n: int,
-       question: str):
-    temp_p_set, temp_n_set = p_set.copy(), n_set.copy()
-    if answer == "YES":
-        q = set(question.split())
-        temp_p_set = q if temp_p_set is None else temp_p_set & q
-    else:
-        temp_n_set |= set(question.split())
-    if p_set is None:
-        result = set(map(str, range(1, max_n + 1))) - set(
-            n_set)
-    else:
-        result = temp_p_set - temp_n_set
-    return result
-
-
-def f2(question: str, max_n: int):
-    if max_n % 2 == 0 and question.split() == list(
-            range(1, int(max_n / 2) + 1)):
-        return True
-    return False
-
+    with open("input.txt", encoding="utf-8") as input_file, open(
+            "output.txt", "w", encoding="utf-8") as output_file:
+        max_n = int(input_file.readline())
+        result = set(range(1, max_n + 1))
+        question = input_file.readline().split()
+        while question != ['HELP']:
+            q = set(map(int, question))
+            yes_result = result & q
+            no_result = result - q
+            if len(yes_result) > len(no_result):
+                print("YES", file=output_file)
+                result = yes_result
+            else:
+                print("NO", file=output_file)
+                result = no_result
+            question = input_file.readline().split()
+        print(*sorted(result, key=int), file=output_file)
 
 
 if __name__ == "__main__":
