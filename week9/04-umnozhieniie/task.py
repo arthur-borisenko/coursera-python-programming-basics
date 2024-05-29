@@ -1,5 +1,6 @@
+import operator
 import sys
-import copy
+import functools
 
 
 class MatrixError(BaseException):
@@ -9,11 +10,10 @@ class MatrixError(BaseException):
 
 
 class Matrix:
-    id = 0
-
     def __init__(self, matrix):
-        self.id += 1
-        self.matrix = copy.deepcopy(matrix)
+        self.matrix = []
+        for row in matrix:
+            self.matrix.append(row.copy())
 
     def __str__(self):
         res = ""
@@ -48,52 +48,28 @@ class Matrix:
                 new_matrix[j][i] = obj.matrix[i][j]
         return Matrix(new_matrix)
 
-    def determinant(self):
-        if self.size()[0] != self.size()[1]:
-            raise ValueError
-        elif self.size()[0] == 2:
-            return self.matrix[0][0] * self.matrix[1][1] - \
-                self.matrix[0][1] * self.matrix[1][0]
-        elif self.size()[0] > 2:
-            result = 0
-            for i in range(self.size()[0]):
-                minor_matrix = copy.deepcopy(self.matrix)
-                del minor_matrix[0]
-                for minor_i in range(len(minor_matrix)):
-                    del minor_matrix[minor_i][i]
-                minor = Matrix(minor_matrix)
-                minor_determinant = minor.determinant()
-                if i % 2 == 0:
-                    result += minor_determinant * self.matrix[0][i]
-                else:
-                    result -= minor_determinant * self.matrix[0][i]
-
-            return result
-
-    def solve(self, b_vector):
-        pass
-        determinant = self.determinant()
-        if determinant == 0:
-            raise ValueError
-        else:
-            solution = []
-            for i in range(self.size()[0]):
-                a_i = copy.deepcopy(self.matrix)
-                for a_i_i in range(len(a_i)):
-                    for a_i_j in range(len(a_i[a_i_i])):
-                        if a_i_j == i:
-                            a_i[a_i_i][a_i_j] = b_vector[a_i_i]
-                a_i_matrix = Matrix(a_i)
-                a_i_determinant = a_i_matrix.determinant()
-                solution.append(a_i_determinant / determinant)
-        return solution
-
     def transpose(self):
         new_matrix = self.transposed(self)
         self.matrix = new_matrix.matrix
         return new_matrix
 
     def __mul__(self, other):
+        if isinstance(other, Matrix):
+            if self.size()[1] == other.size()[0]:
+                a, b = self, Matrix.transposed(other)
+            else:
+                raise MatrixError(self, other)
+            x = []
+            for i in range(a.size()[0]):
+                x.append([])
+                for j in range(b.size()[0]):
+                    a_line = a.matrix[i]
+                    b_column = b.matrix[j]
+                    x[i].append(functools.reduce(operator.add,
+                                                 map(operator.mul,
+                                                     a_line,
+                                                     b_column)))
+            return Matrix(x)
         res = Matrix(self.matrix)
         for i in range(len(res.matrix)):
             for j in range(len(res.matrix[i])):
