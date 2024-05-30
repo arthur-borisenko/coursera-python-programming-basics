@@ -1,4 +1,4 @@
-# Week 9 - Python Programming Basics
+# Week 7 - Python Programming Basics
 
 ## Overview
 
@@ -6,9 +6,8 @@ This week focuses on sets and dictonaries in Python. Below is a detailed descrip
 
 ### Learning Objectives
 
-* Basics of defining and using classes in Python.
-* Inheritance and polymorphism.
-* Handling and raising exceptions.
+* Sets and dictionaries in python
+* Class as structure
 
 ## Task Descriptions
 
