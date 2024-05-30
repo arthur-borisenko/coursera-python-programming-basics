@@ -1,8 +1,8 @@
-# Week 9 - Python Programming Basics
+# Week 6 - Python Programming Basics
 
 ## Overview
 
-This week focuses on sets and dictonaries in Python. Below is a detailed description of each task for Week 7.
+This week focuses on sorting in Python. Below is a detailed description of each task for Week 6.
 
 ### Learning Objectives
 
